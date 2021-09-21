@@ -9,6 +9,15 @@
 #include "Queue.h"
 
 template<class T> class LinkedQueue : public Queue<T>{
+
+    struct Node {
+        T object;
+        Node* next;
+    };
+
+    Node* head;
+    Node* tail;
+
     LinkedQueue<T>(int size, int max): Queue<T>(size, max) {};
 
 };
