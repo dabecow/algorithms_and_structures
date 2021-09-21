@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Structures/Queue.h"
+//#include "Structures/Queue.h"
 #include "Structures/ArrayQueue.h"
 
 int main() {
@@ -10,7 +10,8 @@ int main() {
     queue->push(2);
     queue->push(3);
 
+    int value = queue->pop();
 
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << value << std::endl;
     return 0;
 }
