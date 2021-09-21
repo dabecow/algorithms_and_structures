@@ -56,3 +56,15 @@ T* ArrayQueue<T>::data(){
 
     return data;
 }
+
+template<class T>
+bool ArrayQueue<T>::empty(){
+    if (size < max)
+        return 0;
+}
+
+template<class T>
+T ArrayQueue<T>::first(){
+    return _data[head];
+
+}
