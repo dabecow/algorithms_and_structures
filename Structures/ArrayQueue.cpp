@@ -26,5 +26,15 @@ int ArrayQueue<T>::push(T t){
 
 template<class T>
 T* ArrayQueue<T>::data(){
+}
 
+template<class T>
+bool ArrayQueue<T>::empty(){
+    if (size < max)
+        return 0;
+}
+
+template<class T>
+T ArrayQueue<T>::first(){
+    return _data[head];
 }
