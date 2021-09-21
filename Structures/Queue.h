@@ -8,7 +8,6 @@
 template<class T> class Queue{
 
 protected:
-
     int size;
     int max;
 
