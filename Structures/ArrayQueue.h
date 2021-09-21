@@ -24,15 +24,13 @@ template<class T> class ArrayQueue : public Queue<T>{
         T pop();
         T* data();
 
-        ArrayQueue<T>(int max);
+        ArrayQueue(int max);
 
         bool empty();
         
         T first();
 
-        T* data();
-
-        ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
+//        ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
 
 
 

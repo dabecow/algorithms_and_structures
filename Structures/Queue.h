@@ -22,15 +22,15 @@ public:
      * @param t – the object
      * @return -1 if is full
      */
-    int push(T t) = 0;
+    virtual int push(T t) = 0;
 
-    T pop() = 0;
+    virtual T pop() = 0;
 
-    bool empty() = 0;
+    virtual bool empty() = 0;
 
-    T first() = 0;
+    virtual T first() = 0;
 
-    T* data() = 0;
+    virtual T* data() = 0;
 
 };
 #endif //ALGORITHMS_AND_STRUCTURES_QUEUE_H

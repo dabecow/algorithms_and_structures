@@ -29,7 +29,7 @@ int ArrayQueue<T>::push(T t){
 template<class T>
 T ArrayQueue<T>::pop(){
     if(this->size > 0){
-        T t = data[head];
+        T t = _data[head];
         head++;
 
         if(head == this->max)
@@ -81,8 +81,7 @@ T* ArrayQueue<T>::data(){
 
 template<class T>
 bool ArrayQueue<T>::empty(){
-    if (size < max)
-        return 0;
+    return this->size == 0;
 }
 
 template<class T>
