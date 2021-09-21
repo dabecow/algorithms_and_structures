@@ -26,7 +26,6 @@ int ArrayQueue<T>::push(T t){
 
 template<class T>
 T* ArrayQueue<T>::data(){
-
 }
 
 template<class T>
