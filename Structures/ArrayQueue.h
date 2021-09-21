@@ -10,6 +10,8 @@
 template<class T> class ArrayQueue : public Queue<T>{
 
     private:
+        T *data;
+
         int head;
         int tail;
 
@@ -20,7 +22,8 @@ template<class T> class ArrayQueue : public Queue<T>{
          */
         int push(T t);
 
-    ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
+    public:
+        ArrayQueue<T>(int size, int max);
 
 };
 
