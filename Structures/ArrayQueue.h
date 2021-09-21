@@ -21,6 +21,7 @@ template<class T> class ArrayQueue : public Queue<T>{
          * @return -1 if is full
          */
         int push(T t);
+        T pop();
         T* data();
 
         ArrayQueue<T>(int max);
