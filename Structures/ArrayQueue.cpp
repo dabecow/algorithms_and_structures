@@ -6,7 +6,7 @@
 
 template<class T>
 ArrayQueue<T>::ArrayQueue(int size, int max) : Queue<T>(size, max){
-    data = new T[size];
+    _data = new T[size];
 }
 
 template<class T>
@@ -18,8 +18,13 @@ int ArrayQueue<T>::push(T t){
         return -1;
     }
 
-    data[tail] = t;
+    _data[tail] = t;
     tail++;
 
     return 0;
+}
+
+template<class T>
+T* ArrayQueue<T>::data(){
+
 }
