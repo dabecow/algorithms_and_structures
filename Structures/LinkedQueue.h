@@ -9,6 +9,7 @@
 #include "Queue.h"
 
 template<class T> class LinkedQueue : public Queue<T>{
+    LinkedQueue<T>(int size, int max): Queue<T>(size, max) {};
 
 };
 

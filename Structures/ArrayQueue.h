@@ -8,7 +8,10 @@
 #include "Queue.h"
 
 template<class T> class ArrayQueue : public Queue<T>{
+public:
 
+    ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
 };
+
 
 #endif //ALGORITHMS_AND_STRUCTURES_ARRAYQUEUE_H
