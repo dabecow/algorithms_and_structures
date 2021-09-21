@@ -20,4 +20,6 @@ int ArrayQueue<T>::push(T t){
 
     data[tail] = t;
     tail++;
+
+    return 0;
 }
