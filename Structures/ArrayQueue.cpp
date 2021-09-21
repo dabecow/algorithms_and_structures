@@ -27,4 +27,32 @@ int ArrayQueue<T>::push(T t){
 template<class T>
 T* ArrayQueue<T>::data(){
 
+    if (this->empty())
+        return nullptr;
+
+    T* data = new T[this->size];
+
+    if (tail < head) {
+        int j = 0;
+
+        //от головы до максимума
+        for (int i = head; i < this->max; ++i) {
+            data[j] = _data[i];
+            j++;
+        }
+        //от первого до хвоста
+        for (int i = 0; i < tail; ++i) {
+            data[j] = _data[i];
+        }
+
+    } else {
+        int j = 0;
+
+        for (int i = head; i < tail; ++i) {
+            data[j] = _data[i];
+            j++;
+        }
+    }
+
+    return data;
 }
