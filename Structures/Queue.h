@@ -5,6 +5,7 @@
 #ifndef ALGORITHMS_AND_STRUCTURES_QUEUE_H
 #define ALGORITHMS_AND_STRUCTURES_QUEUE_H
 
+
 template<class T> class Queue{
 
 protected:
@@ -24,12 +25,16 @@ public:
      */
     virtual int push(T t) = 0;
 
-    virtual T pop() = 0;
+    virtual void pop() = 0;
 
     virtual bool empty() = 0;
 
-    virtual T first() = 0;
+    virtual T* first() = 0;
 
+    /**
+     *
+     * @return an array of values in the queue
+     */
     virtual T* data() = 0;
 
 };

@@ -16,17 +16,20 @@ template<class T> class ArrayQueue : public Queue<T>{
         int tail;
 
     public:
+
     explicit ArrayQueue(int max) : Queue<T>(max){
         _data = new T[max];
         head = 0;
-        tail = 1;
+        tail = 0;
     };
+
         /**
          * @param t – the object
          * @return -1 if is full
          */
-        int push(T t){
-            if(tail == head){
+
+        int push(T t) override {
+            if(this->size == this->max){
                 return -1;
             }
 
@@ -37,9 +40,9 @@ template<class T> class ArrayQueue : public Queue<T>{
             if(tail == this->max)
                 tail = 0;
             return 0;
-        };
+        }
 
-        T pop(){
+        void pop() override {
             if(this->size > 0){
                 T t = _data[head];
                 head++;
@@ -47,18 +50,16 @@ template<class T> class ArrayQueue : public Queue<T>{
                 if(head == this->max)
                     head = 0;
 
-                if(head == tail)
-                    head--;
+//                if(head == tail)
+//                    head--;
 
                 this->size--;
 
-                return t;
             }
 
-//            return nullptr;
-        };
+        }
 
-        T* data(){
+        T* data() override {
             if (this->empty())
                 return nullptr;
 
@@ -77,7 +78,17 @@ template<class T> class ArrayQueue : public Queue<T>{
                     data[j] = _data[i];
                 }
 
+            } else if (tail == head && this->size > 0){
+
+                int j = 0;
+
+                for (int i = 0; i < this->max; ++i) {
+                    data[j] = _data[i];
+                    j++;
+                }
+
             } else {
+
                 int j = 0;
 
                 for (int i = head; i < tail; ++i) {
@@ -87,21 +98,20 @@ template<class T> class ArrayQueue : public Queue<T>{
             }
 
             return data;
-        };
+        }
 
-
-
-        bool empty(){
+        bool empty() override {
             return this->size == 0;
-        };
-        
-        T first(){
-            return _data[head];
-        };
+        }
 
-//        ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
+        T* first() override {
 
+            T* value =
+                    this-> size == 0 ? nullptr : _data + head;
 
+            return value;
+
+        }
 
 };
 
