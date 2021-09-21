@@ -5,13 +5,13 @@
 #include "ArrayQueue.h"
 
 template<class T>
-ArrayQueue<T>::ArrayQueue(int size, int max) : Queue<T>(size, max){
-    _data = new T[size];
+ArrayQueue<T>::ArrayQueue(int max) : Queue<T>(max){
+    _data = new T[max];
 }
 
 template<class T>
 int ArrayQueue<T>::push(T t){
-    if(tail == this->size)
+    if(tail == this->max)
         tail = 0;
 
     if(tail == head){
@@ -20,7 +20,7 @@ int ArrayQueue<T>::push(T t){
 
     _data[tail] = t;
     tail++;
-
+    this->size++;
     return 0;
 }
 

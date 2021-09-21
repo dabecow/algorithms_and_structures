@@ -13,9 +13,9 @@ protected:
 
 public:
 
-    explicit Queue(int size, int max){
-        this->size = size;
+    explicit Queue(int max){
         this->max = max;
+        this->size = 0;
     }
 
     /**

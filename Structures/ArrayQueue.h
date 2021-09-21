@@ -24,7 +24,7 @@ template<class T> class ArrayQueue : public Queue<T>{
         T* data();
 
     public:
-        ArrayQueue<T>(int size, int max);
+        ArrayQueue<T>(int max);
 
 };
 
