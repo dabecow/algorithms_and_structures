@@ -8,6 +8,7 @@
 #include "Queue.h"
 
 template<class T> class ArrayQueue : public Queue<T>{
+
     private:
         int head;
         int tail;
@@ -18,6 +19,10 @@ template<class T> class ArrayQueue : public Queue<T>{
          * @return -1 if is full
          */
         int push(T t);
+
+    ArrayQueue<T>(int size, int max): Queue<T>(size, max) {};
+
 };
+
 
 #endif //ALGORITHMS_AND_STRUCTURES_ARRAYQUEUE_H

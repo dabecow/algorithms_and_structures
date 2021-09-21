@@ -12,6 +12,12 @@ protected:
     int max;
 
 public:
+
+    explicit Queue(int size, int max){
+        this->size = size;
+        this->max = max;
+    }
+
     /**
      * @param t – the object
      * @return -1 if is full
