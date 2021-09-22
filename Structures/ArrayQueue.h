@@ -17,11 +17,11 @@ template<class T> class ArrayQueue : public Queue<T>{
 
     public:
 
-    explicit ArrayQueue(int max) : Queue<T>(max){
-        _data = new T[max];
-        head = 0;
-        tail = 0;
-    };
+        explicit ArrayQueue(int max) : Queue<T>(max){
+            _data = new T[max];
+            head = 0;
+            tail = 0;
+        }
 
         /**
          * @param t – the object
@@ -50,13 +50,8 @@ template<class T> class ArrayQueue : public Queue<T>{
                 if(head == this->max)
                     head = 0;
 
-//                if(head == tail)
-//                    head--;
-
                 this->size--;
-
             }
-
         }
 
         T* data() override {
@@ -79,7 +74,7 @@ template<class T> class ArrayQueue : public Queue<T>{
                 }
 
             } else if (tail == head && this->size > 0){
-
+                //TODO not correct
                 int j = 0;
 
                 for (int i = 0; i < this->max; ++i) {
@@ -106,8 +101,7 @@ template<class T> class ArrayQueue : public Queue<T>{
 
         T* first() override {
 
-            T* value =
-                    this-> size == 0 ? nullptr : _data + head;
+            T* value = this-> size == 0 ? nullptr : _data + head;
 
             return value;
 

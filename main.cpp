@@ -1,10 +1,21 @@
 #include <iostream>
 #include "Structures/Queue.h"
 #include "Structures/ArrayQueue.h"
+#include "Structures/LinkedQueue.h"
 
 int main() {
 
-    ArrayQueue<int> queue(5);
+    LinkedQueue<int> queue(5);
+
+    // int* t = new int;
+
+    // *t = 5;
+
+    // queue.push(t);
+
+    // int* ptr = *queue.first();
+
+    // std::cout << *ptr;
 
     queue.push(1);
     queue.push(2);
