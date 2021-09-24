@@ -1,54 +1,51 @@
 #include <iostream>
 #include "Structures/Queue.h"
-#include "Structures/ArrayQueue.h"
 #include "Structures/LinkedQueue.h"
+#include "model/Detail.h"
+#include "model/Producer.h"
+#include <thread>
+
+using namespace std::chrono_literals;
+
+const std::string MAIN_MENU = "1. Add detail\n2. Remove detail\n3. Print details\n4. Reset the producer\n>>>";
+
+char printMenuGetChoice(){
+    std::cout << MAIN_MENU;
+
+    char choice;
+
+    std::cin >> choice;
+
+    return choice;
+}
 
 int main() {
 
-    LinkedQueue<int> queue(5);
+    Queue<Detail*> *detailsQueue = new LinkedQueue<Detail*>(5);
 
-    // int* t = new int;
+    Detail firstDetail("first", 2000);
+    Detail secondDetail("second", 2000);
+    Detail thirdDetail("third", 2000);
 
-    // *t = 5;
+    detailsQueue->push(&firstDetail);
+    detailsQueue->push(&secondDetail);
+    detailsQueue->push(&thirdDetail);
 
-    // queue.push(t);
+    Producer::init(detailsQueue);
 
-    // int* ptr = *queue.first();
+    std::cout << Producer::detailsToString();
 
-    // std::cout << *ptr;
+    bool deletedOne = false;
 
-    queue.push(1);
-    queue.push(2);
-    queue.push(3);
-    queue.push(4);
-    queue.push(5);
+//    Producer::reset();
 
-
-    std::cout << *queue.first() << std::endl;
-    queue.pop();
-    std::cout << *queue.first() << std::endl;
-    queue.pop();
-    std::cout << *queue.first() << std::endl;
-    queue.pop();
-    std::cout << *queue.first() << std::endl;
-    queue.pop();
-    std::cout << *queue.first() << std::endl;
-    queue.pop();
-
-    queue.push(1);
-    queue.push(2);
-    queue.push(3);
-    queue.push(4);
-    queue.push(5);
-
-    int *arr = queue.data();
-
-    std::cout << arr[0] << std::endl;
-    std::cout << arr[1] << std::endl;
-    std::cout << arr[2] << std::endl;
-    std::cout << arr[3] << std::endl;
-    std::cout << arr[4] << std::endl;
-
+    while (Producer::isRunning){
+        std::this_thread::sleep_for(200ms);
+        if (!deletedOne){
+            Producer::dropDetailFromQueue();
+            deletedOne = true;
+        }
+    }
 
 
     return 0;

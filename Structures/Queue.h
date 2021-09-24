@@ -25,6 +25,9 @@ public:
      */
     virtual int push(T t) = 0;
 
+    /**
+     * Deletes the object from queue and from memory
+     */
     virtual void pop() = 0;
 
     virtual bool empty() = 0;
@@ -36,6 +39,10 @@ public:
      * @return an array of values in the queue
      */
     virtual T* data() = 0;
+
+    int getSize(){
+        return size;
+    }
 
 };
 #endif //ALGORITHMS_AND_STRUCTURES_QUEUE_H
