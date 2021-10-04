@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Structures/Queue.h"
-#include "Structures/LinkedQueue.h"
+#include "Structures/queue/Queue.h"
+#include "Structures/queue/LinkedQueue.h"
 #include "model/Detail.h"
 #include "model/Producer.h"
 #include <thread>
@@ -46,6 +46,7 @@ int main() {
             deletedOne = true;
         }
     }
+
 
 
     return 0;

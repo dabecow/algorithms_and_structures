@@ -7,9 +7,9 @@
 
 
 #include "Detail.h"
-#include "../Structures/Queue.h"
-#include "../Structures/ArrayQueue.h"
-#include "../Structures/LinkedQueue.h"
+#include "../Structures/queue/Queue.h"
+#include "../Structures/queue/ArrayQueue.h"
+#include "../Structures/queue/LinkedQueue.h"
 
 #define TIMETOWAIT 1000
 
