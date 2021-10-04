@@ -5,9 +5,6 @@
 #ifndef ALGORITHMS_AND_STRUCTURES_LIST_H
 #define ALGORITHMS_AND_STRUCTURES_LIST_H
 
-#include "Node.h"
-#include "Iterator.h"
-
 template<class T>
 class List {
 
@@ -18,10 +15,6 @@ protected:
 public:
     explicit List() {
         size = 0;
-    }
-
-    Iterator<T> *getIterator() const {
-        return iterator;
     }
 
     int getSize() const {

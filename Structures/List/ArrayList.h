@@ -46,7 +46,7 @@ public:
 
     int add(T t) override {
 
-        if (allocatedSize < size + 1){
+        if (allocatedSize < this->size + 1){
             reallocateMemory();
         }
 
