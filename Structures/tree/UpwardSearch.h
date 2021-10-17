@@ -1,6 +1,7 @@
 #ifndef UPWARDSEARCH_H
 #define UPWARDSEARCH_H
 
+#include <math.h>
 #include "BinaryTree.h"
 
 struct Node{
@@ -37,8 +38,26 @@ void clear(Node* head){
     }
 }
 
-void find(Root* root){
-    
+int find(Root* root){
+    if(root != nullptr){
+        int left = -1;
+        int right = -1;
+        if(root->left != nullptr){
+            left = find(root->left); //1
+        }
+        if(root->right != nullptr){
+            right = find(root->right); //0
+        }
+        if(abs(left - right) == 1){
+            append(root);
+        }
+        if(left == -1 && right == -1)
+            return 0;
+        else if(right == -1)
+            return left + 1;
+        else
+            return left + right + 2;
+    }
 }
 
 #endif
