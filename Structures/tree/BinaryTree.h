@@ -7,7 +7,7 @@ private:
         Root* left;
         Root* right;
         int data;
-    }
+    };
 
     Root* mainRoot;
 
