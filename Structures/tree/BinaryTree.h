@@ -77,6 +77,14 @@ public:
             printf("Allready in tree!");
         }
     }
+
+    Root* fill(int* data, int lenght){
+        for(int i = 0; i < lenght; i++){
+            append(data[i]);
+        }
+
+        return mainRoot;
+    }
 };
 
 #endif
