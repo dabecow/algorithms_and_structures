@@ -9,7 +9,7 @@ struct Node{
     Node* next;
 };
 
-static Node* mainHead;
+Node* mainHead;
 static Node* mainTail;
 
 void append(Root* root){
