@@ -21,7 +21,7 @@ char printMenuGetChoice(){
 
 int main() {
 
-    Queue<Detail*> *detailsQueue = new LinkedQueue<Detail*>(5);
+    Queue<Detail*> *detailsQueue = new ArrayQueue<Detail*>(5);
 
     Detail firstDetail("first", 2000);
     Detail secondDetail("second", 2000);
@@ -36,15 +36,15 @@ int main() {
     std::cout << Producer::detailsToString();
 
     bool deletedOne = false;
-
+//
 //    Producer::reset();
-
+//
     while (Producer::isRunning){
         std::this_thread::sleep_for(200ms);
-        if (!deletedOne){
-            Producer::dropDetailFromQueue();
-            deletedOne = true;
-        }
+//        if (!deletedOne){
+//            Producer::dropDetailFromQueue();
+//            deletedOne = true;
+//        }
     }
 
     return 0;
