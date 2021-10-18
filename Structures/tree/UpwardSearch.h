@@ -46,15 +46,15 @@ void clear(Node* head){
  * @param root передать сюда главный корень дерева
  * @return колличество поддеревьев у корня, т.е. у всего дерева
  */ 
-int find(Root* root){
+int ufind(Root* root){
     if(root != nullptr){
         int left = -1;
         int right = -1;
         if(root->left != nullptr){
-            left = find(root->left); //1
+            left = ufind(root->left); //1
         }
         if(root->right != nullptr){
-            right = find(root->right); //0
+            right = ufind(root->right); //0
         }
         if(abs(left - right) == 1){
             append(root);
