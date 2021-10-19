@@ -87,6 +87,8 @@ template<class T> class LinkedQueue : public Queue<T>{
 
                 return data;
             }
+
+            return nullptr;
         }
 
 };
