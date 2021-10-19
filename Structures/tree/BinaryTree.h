@@ -22,16 +22,23 @@ private:
         return root;
     }
 
-    Root* rAppend(Root* root, int key){
+    Root* rAppend(Root* root, Root* prevRoot, int key){
         if(root == nullptr){
             root = allocRoot(key);
+            if(prevRoot){
+                if(root->key < prevRoot->key)
+                    prevRoot->left = root;
+                else{
+                    prevRoot->right = root;
+                }
+            }
             return root;
         }
 
-        if(root->key < key){
-            return rAppend(root->left, key);
+        if(key < root->key){
+            return rAppend(root->left, root, key);
         }else{
-            return rAppend(root->right, key);
+            return rAppend(root->right, root, key);
         }
     }
 
@@ -69,7 +76,7 @@ public:
     void append(int key){
         Root* root = find(key);
         if(root == nullptr){
-            Root* newRoot = rAppend(mainRoot, key);
+            Root* newRoot = rAppend(mainRoot, nullptr, key);
             if(mainRoot == nullptr)
                 mainRoot = newRoot;
             printf("Done!");

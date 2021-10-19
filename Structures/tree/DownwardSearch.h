@@ -12,11 +12,12 @@ struct RootCell{
 };
 
 static int depth = 0;
-static stack<RootCell*> roots = stack<RootCell*>();
+static stack<RootCell*> roots;
 
 int dfind(Root* root){
     Root* iroot = root;
     int ldepth = 0;
+    roots = stack<RootCell*>();
     while(iroot){
         if(iroot->left && iroot->right){
             ldepth++;
@@ -25,7 +26,13 @@ int dfind(Root* root){
         }else if(!iroot->left && !iroot->right){
             if(ldepth > depth)
                 depth = ldepth;
-            RootCell* cell = roots.top();
+            
+            RootCell* cell = nullptr;
+            if(roots.size() > 0)
+                cell = roots.top();
+            else
+                return depth;
+
             if(cell){
                 roots.pop();
                 ldepth = cell->depth;

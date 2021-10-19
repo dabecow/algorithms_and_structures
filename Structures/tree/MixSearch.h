@@ -10,19 +10,21 @@ static Root* _mfind(Root* root){
     if(root == nullptr)
         return nullptr;
 
-    Root* returned;
+    Root* returned = nullptr;
 
-    _mfind(root->left);
+    returned = _mfind(root->left);
+    if(returned)
+        return returned;
     if(_pos == _reqPos)
         return root;
     _pos++;
-    _mfind(root->right);
+    returned = _mfind(root->right);
 
-    return nullptr;
+    return returned;
 }
 
 Root* mfind(Root* root, int reqPos){
-    reqPos = reqPos;
+    _reqPos = reqPos;
     return _mfind(root);
 }
 

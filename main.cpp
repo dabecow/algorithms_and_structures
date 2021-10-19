@@ -4,6 +4,10 @@
 #include "model/Detail.h"
 #include "model/Producer.h"
 #include <thread>
+#include "Structures/tree/BinaryTree.h"
+#include "Structures/tree/MixSearch.h"
+#include "Structures/tree/UpwardSearch.h"
+#include "Structures/tree/DownwardSearch.h"
 
 using namespace std::chrono_literals;
 
@@ -21,31 +25,16 @@ char printMenuGetChoice(){
 
 int main() {
 
-    Queue<Detail*> *detailsQueue = new LinkedQueue<Detail*>(5);
+    int keys[] = {7, 10, 5, 1, 4, 11, 9, 6, 2, -1, 3, 0};
 
-    Detail firstDetail("first", 2000);
-    Detail secondDetail("second", 2000);
-    Detail thirdDetail("third", 2000);
+    BinaryTree* tree = new BinaryTree();
+    Root* root = tree->fill(keys, 11);
 
-    detailsQueue->push(&firstDetail);
-    detailsQueue->push(&secondDetail);
-    detailsQueue->push(&thirdDetail);
+    Root* mroot = mfind(root, 0);
+    ufind(root);
+    int depth = dfind(root);
 
-    Producer::init(detailsQueue);
-
-    std::cout << Producer::detailsToString();
-
-    bool deletedOne = false;
-
-//    Producer::reset();
-
-    while (Producer::isRunning){
-        std::this_thread::sleep_for(200ms);
-        if (!deletedOne){
-            Producer::dropDetailFromQueue();
-            deletedOne = true;
-        }
-    }
+    Node* roots = mainHead;
 
     return 0;
 }
