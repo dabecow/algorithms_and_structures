@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Structures/queue/Queue.h"
-#include "Structures/queue/LinkedQueue.h"
 #include "model/Detail.h"
 #include "model/Producer.h"
 #include <thread>
