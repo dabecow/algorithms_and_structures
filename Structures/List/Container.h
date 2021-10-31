@@ -1,0 +1,14 @@
+//
+// Created by Andrew on 27.09.2021.
+//
+
+#ifndef ALGORITHMS_AND_STRUCTURES_CONTAINER_H
+#define ALGORITHMS_AND_STRUCTURES_CONTAINER_H
+
+
+class Container {
+
+};
+
+
+#endif //ALGORITHMS_AND_STRUCTURES_CONTAINER_H
