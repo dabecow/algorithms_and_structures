@@ -8,7 +8,7 @@
 #include <string>
 #include "HashTable.h"
 #include <cmath>
-class MultiplyingHashTable : HashTable{
+class MultiplyingHashTable : public HashTable{
 
 public:
     explicit MultiplyingHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {}

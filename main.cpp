@@ -1,50 +1,49 @@
+#include <random>
 #include <iostream>
-#include "Structures/queue/Queue.h"
-#include "model/Detail.h"
-#include "model/Producer.h"
-#include <thread>
+#include "structures/table/HashTable.h"
+#include "structures/table/DivisionHashTable.h"
+#include "structures/table/MultiplyingHashTable.h"
+#include "structures/table/XorHashTable.h"
+#define STRINGS 100
+#define BUCKETS 6
+#define CHARS_IN_STRING 6
 
-using namespace std::chrono_literals;
+std::string intArrToStr(int* arr, int sizeOfArr){
+    std::string str;
+    for (int i = 0; i < sizeOfArr; ++i) {
+        str+= std::to_string(i) + ':'  + std::to_string(arr[i]) + '\n';
+    }
 
-const std::string MAIN_MENU = "1. Add detail\n2. Remove detail\n3. Print details\n4. Reset the producer\n>>>";
+    return str;
+}
 
-char printMenuGetChoice(){
-    std::cout << MAIN_MENU;
+std::string random_string(int length)
+{
+    std::string str("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz");
 
-    char choice;
+    std::random_device rd;
+    std::mt19937 generator(rd());
 
-    std::cin >> choice;
+    std::shuffle(str.begin(), str.end(), generator);
 
-    return choice;
+    return str.substr(0, length);
 }
 
 int main() {
 
-    Queue<Detail*> *detailsQueue = new ArrayQueue<Detail*>(5);
+    HashTable *divisionTable = new DivisionHashTable(BUCKETS);
+    HashTable *multiplyingTable = new MultiplyingHashTable(BUCKETS);
+    HashTable *xorTable = new XorHashTable(BUCKETS);
 
-    Detail firstDetail("first", 2000);
-    Detail secondDetail("second", 2000);
-    Detail thirdDetail("third", 2000);
-
-    detailsQueue->push(&firstDetail);
-    detailsQueue->push(&secondDetail);
-    detailsQueue->push(&thirdDetail);
-
-    Producer::init(detailsQueue);
-
-    std::cout << Producer::detailsToString();
-
-    bool deletedOne = false;
-//
-//    Producer::reset();
-//
-    while (Producer::isRunning){
-        std::this_thread::sleep_for(200ms);
-//        if (!deletedOne){
-//            Producer::dropDetailFromQueue();
-//            deletedOne = true;
-//        }
+    for (int i = 0; i < STRINGS; ++i) {
+        divisionTable->addValue(random_string(CHARS_IN_STRING));
+        multiplyingTable->addValue(random_string(CHARS_IN_STRING));
+        xorTable->addValue(random_string(CHARS_IN_STRING));
     }
 
+    std::cout << "Collisions in tables by buckets:\n" <<
+              "Division table: \n" << intArrToStr(divisionTable->countCollisions(), BUCKETS) << '\n' <<
+              "Multiplying table: \n" << intArrToStr(multiplyingTable->countCollisions(), BUCKETS) << '\n' <<
+              "Xor table: \n" << intArrToStr(xorTable->countCollisions(), BUCKETS);
     return 0;
 }

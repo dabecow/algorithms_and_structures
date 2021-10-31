@@ -6,13 +6,13 @@
 #define ALGORITHMS_AND_STRUCTURES_XORHASHTABLE_H
 
 #include "HashTable.h"
-class xorHashTable : HashTable{
+class XorHashTable : public HashTable{
 
 private:
     int* r;
 
 public:
-    explicit xorHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {
+    explicit XorHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {
         r = new int[numberOfBuckets];
         for (int i = 0; i < numberOfBuckets; ++i) {
             r[i] = rand() % 540 + 288;
@@ -22,7 +22,7 @@ public:
     void addValue(std::string value) override {
         int index = xorHashFunction(value, r);
 
-        this->array[index].add(value);
+        this->array[index % numberOfBuckets].add(value);
     }
 };
 

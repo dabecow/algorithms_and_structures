@@ -25,6 +25,8 @@ public:
         this->TAIL = nullptr;
     }
 
+    using List<std::string>::getSize;
+
     void clear() override {
         if (TAIL == nullptr)
             return;
@@ -40,6 +42,7 @@ public:
         HEAD = nullptr;
         TAIL = nullptr;
 
+        this->size = 0;
     }
 
     int add(T t) override {
@@ -65,6 +68,8 @@ public:
     Node *getTail() const {
         return TAIL;
     }
+
+
 };
 
 

@@ -16,7 +16,7 @@ int stringToIntSum(const std::string& value){
 }
 
 int divisionHashFunction(int value, int M){
-    return value / M;
+    return value % M;
 }
 
 int multiplyingHashFunction(int value, int M, float A){

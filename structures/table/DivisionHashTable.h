@@ -8,7 +8,7 @@
 #include <string>
 #include "HashTable.h"
 
-class DivisionHashTable : HashTable {
+class DivisionHashTable : public HashTable {
 
 public:
     explicit DivisionHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {}
