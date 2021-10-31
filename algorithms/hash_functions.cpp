@@ -32,10 +32,11 @@ int multiplyingHashFunction(const std::string& value, int M, float A){
     return multiplyingHashFunction(stringToIntSum(value), M, A);
 }
 
-int xorHashFunction(const std::string& value, int *r){
+int xorHashFunction(const std::string& value, const int *r){
     int sum = 0;
 
     for (int i = 0; i < value.size(); ++i) {
         sum += (int) value[i] ^ r[i];
     }
+    return sum;
 }

@@ -17,6 +17,6 @@ int divisionHashFunction(const std::string& value, int M);
 
 int multiplyingHashFunction(const std::string& value, int M, float A);
 
-int xorHashFunction(const std::string& value, int *r);
+int xorHashFunction(const std::string& value, const int *r);
 
 #endif //ALGORITHMS_AND_STRUCTURES_HASH_FUNCTIONS_H

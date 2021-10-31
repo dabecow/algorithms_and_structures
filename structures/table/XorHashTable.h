@@ -15,7 +15,7 @@ public:
     explicit XorHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {
         r = new int[numberOfBuckets];
         for (int i = 0; i < numberOfBuckets; ++i) {
-            r[i] = rand() % 540 + 288;
+            r[i] = rand() % 1023 + 540;
         }
     }
 
