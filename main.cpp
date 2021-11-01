@@ -33,12 +33,13 @@ int main() {
 
     HashTable *divisionTable = new DivisionHashTable(BUCKETS);
     HashTable *multiplyingTable = new MultiplyingHashTable(BUCKETS);
-    HashTable *xorTable = new XorHashTable(BUCKETS);
+    HashTable *xorTable = new XorHashTable(BUCKETS, CHARS_IN_STRING);
 
     for (int i = 0; i < STRINGS; ++i) {
-        divisionTable->addValue(random_string(CHARS_IN_STRING));
-        multiplyingTable->addValue(random_string(CHARS_IN_STRING));
-        xorTable->addValue(random_string(CHARS_IN_STRING));
+        std::string str = random_string(CHARS_IN_STRING);
+        divisionTable->addValue(str);
+        multiplyingTable->addValue(str);
+        xorTable->addValue(str);
     }
 
     std::cout << "Collisions in tables by buckets:\n" <<

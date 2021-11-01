@@ -12,8 +12,8 @@ private:
     int* r;
 
 public:
-    explicit XorHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {
-        r = new int[numberOfBuckets];
+    explicit XorHashTable(int numberOfBuckets, int stringLength) : HashTable(numberOfBuckets) {
+        r = new int[stringLength];
         for (int i = 0; i < numberOfBuckets; ++i) {
             r[i] = rand() % 1023 + 540;
         }
