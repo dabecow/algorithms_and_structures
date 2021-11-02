@@ -47,6 +47,8 @@ int dfind(Root* root){
                 iroot = iroot->right;
         }
     }
+
+    return 0;
 }
 
 

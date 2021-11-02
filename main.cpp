@@ -25,16 +25,18 @@ char printMenuGetChoice(){
 
 int main() {
 
-    int keys[] = {7, 10, 5, 1, 4, 11, 9, 6, 2, -1, 3, 0};
+    int keys[] = {7, 10, 5, 1, 4, 11, 9, 6, 2, 3, 0};
 
     BinaryTree* tree = new BinaryTree();
     Root* root = tree->fill(keys, 11);
 
-    Root* mroot = mfind(root, 0);
+    Root* mroot = mfind(root, 3);
     ufind(root);
     int depth = dfind(root);
 
     Node* roots = mainHead;
+
+    // tree->remove(1);
 
     return 0;
 }

@@ -68,6 +68,7 @@ int ufind(Root* root){
         else
             return left + right + 2;
     }
+    return -1;
 }
 
 #endif
