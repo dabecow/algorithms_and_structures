@@ -5,7 +5,7 @@
 #include "hash_functions.h"
 #include <cmath>
 
-int stringToIntSum(const std::string& value){
+int stringToIntSumAdditive(const std::string& value){
     int integerValue = 0;
 
     for (char i : value) {
@@ -15,24 +15,7 @@ int stringToIntSum(const std::string& value){
     return integerValue;
 }
 
-int divisionHashFunction(int value, int M){
-    return value % M;
-}
-
-int multiplyingHashFunction(int value, int M, float A){
-    float dummy;
-    return (int) ( (float) M * modf(((float) value * A), &dummy));
-}
-
-int divisionHashFunction(const std::string& value, int M){
-    return divisionHashFunction(stringToIntSum(value), M);
-}
-
-int multiplyingHashFunction(const std::string& value, int M, float A){
-    return multiplyingHashFunction(stringToIntSum(value), M, A);
-}
-
-int xorHashFunction(const std::string& value, const int *r){
+int stringToIntSumByXor(const std::string& value, const int *r){
     int sum = 0;
 
     for (int i = 0; i < value.size(); ++i) {
@@ -40,3 +23,13 @@ int xorHashFunction(const std::string& value, const int *r){
     }
     return sum;
 }
+
+int divisionHashFunction(int value, int M){
+    return value % M;
+}
+
+int multiplyingHashFunction(int value, int M, float A){
+    double dummy;
+    return (int) ( (float) M * modf(((float) value * A), &dummy));
+}
+

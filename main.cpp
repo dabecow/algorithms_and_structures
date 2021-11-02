@@ -3,7 +3,8 @@
 #include "structures/table/HashTable.h"
 #include "structures/table/DivisionHashTable.h"
 #include "structures/table/MultiplyingHashTable.h"
-#include "structures/table/XorHashTable.h"
+#include "structures/table/XorDivisionHashTable.h"
+#include "structures/table/XorMultiplyingHashTable.h"
 #define STRINGS 100
 #define BUCKETS 6
 #define CHARS_IN_STRING 6
@@ -33,18 +34,22 @@ int main() {
 
     HashTable *divisionTable = new DivisionHashTable(BUCKETS);
     HashTable *multiplyingTable = new MultiplyingHashTable(BUCKETS);
-    HashTable *xorTable = new XorHashTable(BUCKETS, CHARS_IN_STRING);
+    HashTable *xorDivisionTable = new XorDivisionHashTable(BUCKETS, CHARS_IN_STRING);
+    HashTable *xorMultiplying = new XorMultiplyingHashTable(BUCKETS, CHARS_IN_STRING);
 
     for (int i = 0; i < STRINGS; ++i) {
         std::string str = random_string(CHARS_IN_STRING);
         divisionTable->addValue(str);
         multiplyingTable->addValue(str);
-        xorTable->addValue(str);
+        xorDivisionTable->addValue(str);
+        xorMultiplying->addValue(str);
     }
 
     std::cout << "Collisions in tables by buckets:\n" <<
               "Division table: \n" << intArrToStr(divisionTable->countCollisions(), BUCKETS) << '\n' <<
               "Multiplying table: \n" << intArrToStr(multiplyingTable->countCollisions(), BUCKETS) << '\n' <<
-              "Xor table: \n" << intArrToStr(xorTable->countCollisions(), BUCKETS);
+              "Xor division table: \n" << intArrToStr(xorDivisionTable->countCollisions(), BUCKETS) << '\n' <<
+              "Xor multiplying table: \n" << intArrToStr(xorMultiplying->countCollisions(), BUCKETS);
+
     return 0;
 }

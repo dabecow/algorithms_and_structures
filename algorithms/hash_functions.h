@@ -7,16 +7,15 @@
 
 #include <string>
 
-int stringToIntSum(const std::string& value);
+int stringToIntSumAdditive(const std::string& value);
+
+int stringToIntSumByXor(const std::string& value, const int *r);
 
 int divisionHashFunction(int value, int M);
 
 int multiplyingHashFunction(int value, int M, float A);
 
-int divisionHashFunction(const std::string& value, int M);
 
-int multiplyingHashFunction(const std::string& value, int M, float A);
 
-int xorHashFunction(const std::string& value, const int *r);
 
 #endif //ALGORITHMS_AND_STRUCTURES_HASH_FUNCTIONS_H

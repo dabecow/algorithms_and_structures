@@ -15,7 +15,7 @@ public:
 
     void addValue(std::string value) override {
         double A = (sqrt(5) - 1)/2;
-        int index = multiplyingHashFunction(value, numberOfBuckets, A);
+        int index = multiplyingHashFunction(stringToIntSumAdditive(value), numberOfBuckets, A);
         this->array[index].add(value);
     }
 };

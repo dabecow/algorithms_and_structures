@@ -14,7 +14,7 @@ public:
     explicit DivisionHashTable(int numberOfBuckets) : HashTable(numberOfBuckets) {}
 
     void addValue(std::string value) override {
-        int index = divisionHashFunction(value, this->numberOfBuckets);
+        int index = divisionHashFunction(stringToIntSumAdditive(value), this->numberOfBuckets);
 
         this->array[index].add(value);
     }
