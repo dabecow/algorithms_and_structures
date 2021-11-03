@@ -17,8 +17,8 @@ public:
         size = 0;
     }
 
-    int getSize() const {
-        return size;
+    int getSize() {
+        return this->size;
     }
 
     virtual void clear() = 0;
