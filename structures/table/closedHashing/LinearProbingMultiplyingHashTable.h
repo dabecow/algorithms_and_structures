@@ -14,15 +14,15 @@ private:
 
 public:
 
-    LinearProbingMultiplyingHashTable(int numberOfBuckets, int iMaxValue, int constValue) :
-        HashTable(numberOfBuckets, iMaxValue), constValue(constValue) {}
+    LinearProbingMultiplyingHashTable(int numberOfBuckets, int iMaxValue, int stringLength, int constValue) : HashTable(
+            numberOfBuckets, iMaxValue, stringLength), constValue(constValue) {}
 
     int add(std::string value) override {
         double A = (sqrt(5) - 1)/2;
-        int hashResult = multiplyingHashFunction(stringToIntSumByXor(value, r, A), numberOfBuckets);
+        int hashResult = multiplyingHashFunction(stringToIntSumByXor(value, r), numberOfBuckets, A);
 
         for (int i = 0; i < iMaxValue; ++i) {
-            if (insert(hashResult + constValue * i, value) % numberOfBuckets == 0)
+            if (insert(hashResult + constValue * i, &value) % numberOfBuckets == 0)
                 return 0;
         }
 

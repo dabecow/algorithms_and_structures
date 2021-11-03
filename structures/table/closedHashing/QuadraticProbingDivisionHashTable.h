@@ -11,15 +11,17 @@ class QuadraticProbingDivisionHashTable : public HashTable {
 private:
     int cValue;
     int dValue;
+
 public:
-    QuadraticProbingDivisionHashTable(int numberOfBuckets, int iMaxValue, int cValue, int dValue) :
-        HashTable(numberOfBuckets, iMaxValue), cValue(cValue), dValue(dValue) {}
+
+    QuadraticProbingDivisionHashTable(int numberOfBuckets, int iMaxValue, int stringLength, int cValue, int dValue)
+            : HashTable(numberOfBuckets, iMaxValue, stringLength), cValue(cValue), dValue(dValue) {}
 
     int add(std::string value) override {
         int hashResult = divisionHashFunction(stringToIntSumByXor(value, r), numberOfBuckets);
 
         for (int i = 0; i < iMaxValue; ++i) {
-            if (insert(hashResult + cValue * i + dValue * i * i, value) % numberOfBuckets == 0)
+            if (insert(hashResult + cValue * i + dValue * i * i, &value) % numberOfBuckets == 0)
                 return 0;
         }
 

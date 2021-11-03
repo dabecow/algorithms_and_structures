@@ -13,18 +13,16 @@ class LinearProbingDivisionHashTable : public HashTable {
 private:
     int constValue;
 
-
-
 public:
 
-    LinearProbingDivisionHashTable(int numberOfBuckets, int iMaxValue, int constValue) :
-        HashTable(numberOfBuckets, iMaxValue), constValue(constValue) {}
+    LinearProbingDivisionHashTable(int numberOfBuckets, int iMaxValue, int stringLength, int constValue) : HashTable(
+            numberOfBuckets, iMaxValue, stringLength), constValue(constValue) {}
 
     int add(std::string value) override {
         int hashResult = divisionHashFunction(stringToIntSumByXor(value, r), numberOfBuckets);
 
         for (int i = 0; i < iMaxValue; ++i) {
-            if (insert(hashResult + constValue * i, value) % numberOfBuckets == 0)
+            if (insert(hashResult + constValue * i, &value) % numberOfBuckets == 0)
                 return 0;
         }
 

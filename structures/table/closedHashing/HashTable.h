@@ -16,10 +16,10 @@ class HashTable {
 protected:
     int* r;
     int numberOfBuckets;
-    std::string* array;
+    std::string** array;
     int iMaxValue;
 
-    int insert(int idx, const std::string& value){
+    int insert(int idx, std::string* value){
         if (array[idx] == nullptr){
             array[idx] = value;
             return 0;
@@ -30,8 +30,9 @@ protected:
 
 public:
 
-    explicit HashTable(int numberOfBuckets, int iMaxValue) : numberOfBuckets(numberOfBuckets), iMaxValue(iMaxValue) {
-        array = new std::string[numberOfBuckets];
+
+    explicit HashTable(int numberOfBuckets, int iMaxValue, int stringLength) : numberOfBuckets(numberOfBuckets), iMaxValue(iMaxValue) {
+        array = new std::string*[numberOfBuckets];
         r = new int[stringLength];
         for (int i = 0; i < 6; ++i) {
             r[i] = rand() % 127 + 64;

@@ -1,13 +1,17 @@
 #include <random>
 #include <iostream>
-#include "structures/table/openHashing/HashTable.h"
-#include "structures/table/openHashing/DivisionHashTable.h"
-#include "structures/table/openHashing/MultiplyingHashTable.h"
-#include "structures/table/openHashing/XorDivisionHashTable.h"
-#include "structures/table/openHashing/XorMultiplyingHashTable.h"
+#include "structures/table/closedHashing/HashTable.h"
+#include "structures/table/closedHashing/LinearProbingDivisionHashTable.h"
+#include "structures/table/closedHashing/LinearProbingMultiplyingHashTable.h"
+#include "structures/table/closedHashing/QuadraticProbingDivisionHashTable.h"
+#include "structures/table/closedHashing/QuadraticProbingMultiplyingHashTable.h"
+
 #define STRINGS 10000
 #define BUCKETS 100
 #define CHARS_IN_STRING 6
+#define MAX_I_VALUE 10
+#define C_VALUE 4
+#define D_VALUE 4
 
 std::string intArrToStr(int* arr, int sizeOfArr){
     std::string str;
@@ -32,17 +36,17 @@ std::string random_string(int length)
 
 int main() {
 
-    HashTable *divisionTable = new DivisionHashTable(BUCKETS);
-    HashTable *multiplyingTable = new MultiplyingHashTable(BUCKETS);
-    HashTable *xorDivisionTable = new XorDivisionHashTable(BUCKETS, CHARS_IN_STRING);
-    HashTable *xorMultiplying = new XorMultiplyingHashTable(BUCKETS, CHARS_IN_STRING);
+    HashTable *linearDivisionTable = new LinearProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, C_VALUE);
+    HashTable *linearMultiplyingTable = new LinearProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, C_VALUE);
+    HashTable *quadraticDivisionTable = new QuadraticProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, C_VALUE, D_VALUE);
+    HashTable *quadraticMultiplyingTable = new QuadraticProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, C_VALUE, D_VALUE);
 
     for (int i = 0; i < STRINGS; ++i) {
         std::string str = random_string(CHARS_IN_STRING);
-        divisionTable->addValue(str);
-        multiplyingTable->addValue(str);
-        xorDivisionTable->addValue(str);
-        xorMultiplying->addValue(str);
+        linearDivisionTable->add(str);
+        linearMultiplyingTable->add(str);
+        quadraticDivisionTable->add(str);
+        quadraticMultiplyingTable->add(str);
     }
 
     std::cout << "Collisions in tables by buckets:\n" <<
