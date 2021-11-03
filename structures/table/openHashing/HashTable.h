@@ -5,9 +5,9 @@
 #ifndef ALGORITHMS_AND_STRUCTURES_HASHTABLE_H
 #define ALGORITHMS_AND_STRUCTURES_HASHTABLE_H
 
-#include "../list/LinkedList.h"
-#include "../list/ArrayList.h"
-#include "../../algorithms/hash_functions.h"
+#include "../../list/LinkedList.h"
+#include "../../list/ArrayList.h"
+#include "../../../algorithms/hash_functions.h"
 
 class HashTable {
 

@@ -1,12 +1,12 @@
 #include <random>
 #include <iostream>
-#include "structures/table/HashTable.h"
-#include "structures/table/DivisionHashTable.h"
-#include "structures/table/MultiplyingHashTable.h"
-#include "structures/table/XorDivisionHashTable.h"
-#include "structures/table/XorMultiplyingHashTable.h"
-#define STRINGS 100
-#define BUCKETS 6
+#include "structures/table/openHashing/HashTable.h"
+#include "structures/table/openHashing/DivisionHashTable.h"
+#include "structures/table/openHashing/MultiplyingHashTable.h"
+#include "structures/table/openHashing/XorDivisionHashTable.h"
+#include "structures/table/openHashing/XorMultiplyingHashTable.h"
+#define STRINGS 10000
+#define BUCKETS 100
 #define CHARS_IN_STRING 6
 
 std::string intArrToStr(int* arr, int sizeOfArr){
