@@ -3,4 +3,13 @@ project(algorithms_and_structures)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(algorithms_and_structures main.cpp structures/queue/LinkedQueue.h structures/queue/Queue.h structures/queue/ArrayQueue.h model/Detail.cpp model/Detail.h model/Producer.cpp model/Producer.h structures/list/List.h structures/list/MultiLinkedList.h structures/list/ArrayList.h structures/tree/BinaryTree.h structures/tree/UpwardSearch.h algorithms/hash_functions.cpp algorithms/hash_functions.h structures/table/HashTable.h structures/list/LinkedList.h structures/table/DivisionHashTable.h structures/table/MultiplyingHashTable.h structures/table/XorDivisionHashTable.h structures/table/XorMultiplyingHashTable.h)
+set(PROJECT_DIR "C:/labs/Semestr 5/algorithms_and_structures")
+
+file(GLOB_RECURSE SOURCES ${PROJECT_DIR}/src/*.cpp ${PROJECT_DIR}/src/*.h ${PROJECT_DIR}/main.cpp)
+
+add_executable(algorithms_and_structures ${SOURCES})
+
+target_include_directories(algorithms_and_structures PUBLIC ${PROJECT_DIR}/src/sorting)
+target_include_directories(algorithms_and_structures PUBLIC ${PROJECT_DIR}/src/structures)
+
+target_link_libraries(algorithms_and_structures -lmingw32)

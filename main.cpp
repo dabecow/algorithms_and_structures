@@ -1,10 +1,10 @@
 #include <random>
 #include <iostream>
-#include "structures/table/HashTable.h"
-#include "structures/table/DivisionHashTable.h"
-#include "structures/table/MultiplyingHashTable.h"
-#include "structures/table/XorDivisionHashTable.h"
-#include "structures/table/XorMultiplyingHashTable.h"
+#include "table/HashTable.h"
+#include "table/DivisionHashTable.h"
+#include "table/MultiplyingHashTable.h"
+#include "table/XorDivisionHashTable.h"
+#include "table/XorMultiplyingHashTable.h"
 #define STRINGS 100
 #define BUCKETS 6
 #define CHARS_IN_STRING 6
