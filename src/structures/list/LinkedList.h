@@ -6,6 +6,7 @@
 #define ALGORITHMS_AND_STRUCTURES_LINKEDLIST_H
 
 #include "List.h"
+#include <string>
 
 template<class T>
 class LinkedList : List<T> {

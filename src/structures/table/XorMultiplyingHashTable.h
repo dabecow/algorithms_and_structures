@@ -6,6 +6,7 @@
 #define ALGORITHMS_AND_STRUCTURES_XORMULTIPLYINGHASHTABLE_H
 
 #include "HashTable.h"
+#include <math.h>
 
 class XorMultiplyingHashTable : public HashTable {
 
