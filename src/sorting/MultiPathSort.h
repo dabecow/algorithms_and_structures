@@ -14,11 +14,13 @@ struct File{
     string name;
     FILE* file;
     bool opened;
+    bool empty;
     int mode;
 
     File(string name) : name(name){
         file = NULL;
         opened = false;
+        empty = true;
         mode = 0;
     }
 };
@@ -30,7 +32,7 @@ struct Value{
     int index;
 };
 
-void mp_sort(const string file, int pathsNum);
+int mp_sort(const string file, int pathsNum);
 
 static int open_file(File* file, int mode);
 static void close_file(File* file);
@@ -43,5 +45,6 @@ static bool write_next(File* file, const char* value);
 static string int_to_string(int i);
 static int loop(int a, int b, int i);
 static int* delete_index(int* arr, int length, int index);
+static Value* delete_value(Value* arr, int length, int index);
 
 #endif

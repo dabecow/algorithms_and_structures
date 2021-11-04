@@ -2,10 +2,10 @@
 #include <mem.h>
 #include <math.h>
 
-void mp_sort(const string file, int pathsNum){
+int mp_sort(const string file, int pathsNum){
     File* mFile = new File("./input.txt");
     if(open_file(mFile, READ) == -1)
-        return;
+        return -1;
 
     File** sFiles = (File**) malloc(sizeof(File*) * pathsNum * 2);
 
@@ -14,6 +14,8 @@ void mp_sort(const string file, int pathsNum){
 
     int activeFileNum = 0;
     int activeFileLinesNum = 0;
+
+    int passCounter = 0;
 
     int* iMap = (int*) malloc(sizeof(int) * pathsNum * 2);
 
@@ -29,8 +31,10 @@ void mp_sort(const string file, int pathsNum){
         do{
             char* line;
             read_line(mFile, &line);
+            if(!sFiles[ioutFile]->empty)
+                write_next(sFiles[ioutFile], ", ");
             write_next(sFiles[ioutFile], line);
-            write_next(sFiles[ioutFile], ", ");
+            sFiles[ioutFile]->empty = false;
             ioutFile = loop(0, pathsNum, ioutFile + 1);
             linesCount++;
         }while(!feof(mFile->file));
@@ -59,71 +63,122 @@ void mp_sort(const string file, int pathsNum){
             int* iaMap = (int*) malloc(sizeof(int) * pathsNum);
 
             for(int i = 0; i < activeFileNum; i++){
-                iaMap[i] = i;
+                iaMap[i] = iMap[i];
             }
 
             linesCount = 0;
             ioutFile = pathsNum;
 
-            while(activeFileNum != 0){
+            while(activeFileNum != 0){ //проход
                 linesCount++;
+                passCounter++;
                 activeFileLinesNum = activeFileNum;
 
-                while(activeFileLinesNum != 0){
-                    //read first number from all files lines to array
-                    Value* values = (Value*) malloc(sizeof(Value) * activeFileLinesNum);
+                //read first number from all files lines to array
+                Value* values = (Value*) malloc(sizeof(Value) * activeFileLinesNum);
 
-                    for(int i = 0; i < activeFileLinesNum; i++){
-                        char* v;
-                        int count = read_next(sFiles[iaMap[i]], &v);
+                // int valueNum = activeFileLinesNum;
 
-                        values[i].index = iaMap[i];
-                        values[i].value = -1;
-                        values[i].eof = false;
-                        values[i].eol = false;
+                if(!sFiles[iMap[ioutFile]]->empty)
+                    write_next(sFiles[iMap[ioutFile]], ", ");
 
-                        if(count == -1){
-                            values[i].eof = true;
-                            continue;
-                        }
-                        if(strcmp(v, ",") == 0){
-                            values[i].eol = true;
-                            continue;
-                        }
-                        values[i].value = atoi(v);
+                for(int i = 0; i < activeFileLinesNum; i++){
+                    char* v;
+                    int count = read_next(sFiles[iaMap[i]], &v);
+
+                    values[i].index = iaMap[i];
+                    values[i].value = -1;
+                    values[i].eof = false;
+                    values[i].eol = false;
+
+                    if(count == -1){
+                        values[i].eof = true;
+                        continue;
                     }
+                    if(strcmp(v, ",") == 0){
+                        values[i].eol = true;
+                        continue;
+                    }
+                    values[i].value = atoi(v);
+                }
 
-                    int minIndex = 0;
+                while(activeFileLinesNum != 0){
 
-                    for(int i = 0; i < activeFileLinesNum; i++){
+                    int minIndex = -1;
+                    int min = INT32_MAX;
+
+                    for(int i = 0; i < activeFileLinesNum;){
                         if(values[i].eof){
                             activeFileNum--;
                             activeFileLinesNum--;
-                            iaMap = delete_index(iaMap, activeFileLinesNum + 1, values[i].index);
+                            values = delete_value(values, activeFileLinesNum + 1, values[i].index);
+                            // iaMap = delete_index(iaMap, activeFileLinesNum + 1, values[i].index);
                             continue;
                         }
                         if(values[i].eol){
                             activeFileLinesNum--;
-                            iaMap = delete_index(iaMap, activeFileLinesNum + 1, values[i].index);
+                            values = delete_value(values, activeFileLinesNum + 1, values[i].index);
+                            // iaMap = delete_index(iaMap, activeFileLinesNum + 1, values[i].index);
                             continue;
                         }
-                        if(values[i].value < values[minIndex].value)
+                        i++;
+                    }
+
+                    // valueNum = activeFileLinesNum;
+
+                    for(int i = 0; i < activeFileLinesNum; i++){
+                        if(values[i].value <= min){
+                            min = values[i].value;
                             minIndex = i;
+                        }
+                    }
+
+                    if(activeFileLinesNum == 0){
+                        continue;
                     }
 
                     char v[256];
-                    sprintf(v, "%d", values[minIndex].value);
+                    sprintf(v, "%d ", values[minIndex].value);
                     write_next(sFiles[iMap[ioutFile]], v);
+                    sFiles[iMap[ioutFile]]->empty = false;
+
+                    //read next value
+
+                    values[minIndex].value = -1;
+                    values[minIndex].eof = false;
+                    values[minIndex].eol = false;
+
+                    char* val;
+                    int count = read_next(sFiles[values[minIndex].index], &val);
+                    if(count == -1)
+                        values[minIndex].eof = true;
+                    else{
+                        if(strcmp(val, ",") == 0)
+                            values[minIndex].eol = true;
+                        else
+                            values[minIndex].value = atoi(val);
+                    }
                 }
-                write_next(sFiles[iMap[ioutFile]], ", ");
                 ioutFile = loop(pathsNum, pathsNum * 2, ioutFile + 1);
             }
 
             //swap iMap
 
+            for(int i = 0; i < pathsNum; i++){
+                int temp = iMap[i];
+                iMap[i] = iMap[i + pathsNum];
+                iMap[i + pathsNum] = temp;
+            }
+
             free(iaMap);
         }
+
+        for(int i = 0; i < pathsNum * 2; i++){
+            close_file(sFiles[i]);
+        }
     }
+
+    return passCounter;
 }
 
 FILE* open_read(const string name){
@@ -150,6 +205,7 @@ int open_file(File* file, int mode){
         break;
         case WRITE:
             file->file = fopen(file->name.c_str(), "w");
+            file->empty = true;
         break;
     }
 
@@ -235,6 +291,20 @@ int* delete_index(int* arr, int length, int index){
     int offset = 0;
     for(int i = 0; i < length - 1; i++){
         if(arr[i] == index)
+            offset = 1;
+        result[i] = arr[i + offset];
+    }
+
+    free(arr);
+
+    return result;
+}
+
+Value* delete_value(Value* arr, int length, int index){
+    Value* result = (Value*) malloc(sizeof(Value) * (length - 1));
+    int offset = 0;
+    for(int i = 0; i < length - 1; i++){
+        if(arr[i].index == index)
             offset = 1;
         result[i] = arr[i + offset];
     }

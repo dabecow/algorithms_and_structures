@@ -9,6 +9,7 @@ file(GLOB_RECURSE SOURCES ${PROJECT_DIR}/main.cpp ${PROJECT_DIR}/src/*.cpp ${PRO
 
 add_executable(algorithms_and_structures ${SOURCES})
 
+target_include_directories(algorithms_and_structures PUBLIC ${PROJECT_DIR}/src)
 target_include_directories(algorithms_and_structures PUBLIC ${PROJECT_DIR}/src/sorting)
 target_include_directories(algorithms_and_structures PUBLIC ${PROJECT_DIR}/src/structures)
 
