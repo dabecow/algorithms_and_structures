@@ -3,15 +3,45 @@
 
 #include <string>
 
+#define READ 0
+#define WRITE 1
 #define SEPARATOR ","
+#define FOLDER "temp_files/"
 
 using namespace std;
 
-void mp_sort(const string file);
+struct File{
+    string name;
+    FILE* file;
+    bool opened;
+    int mode;
 
-FILE* open_read(const string name);
-FILE* open_write(const string name);
-int read_next(FILE* file, char* value);
-void write_next(FILE* file, char* value);
+    File(string name) : name(name){
+        file = NULL;
+        opened = false;
+        mode = 0;
+    }
+};
+
+struct Value{
+    int value;
+    bool eof;
+    bool eol;
+    int index;
+};
+
+void mp_sort(const string file, int pathsNum);
+
+static int open_file(File* file, int mode);
+static void close_file(File* file);
+static FILE* open_read(const string name);
+static FILE* open_write(const string name);
+static int read_next(File*, char** value);
+static int read_line(File* file, char** value);
+static bool write_next(File* file, const char* value);
+
+static string int_to_string(int i);
+static int loop(int a, int b, int i);
+static int* delete_index(int* arr, int length, int index);
 
 #endif

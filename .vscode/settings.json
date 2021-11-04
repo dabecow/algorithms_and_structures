@@ -1,19 +1,9 @@
 {
-    "C_Cpp.default.configurationProvider": "go2sh.cmake-integration",
     "files.associations": {
         "*.script": "lua",
-        "array": "cpp",
-        "string_view": "cpp",
-        "initializer_list": "cpp",
-        "utility": "cpp",
-        "new": "cpp",
+        "*.pl": "prolog",
+        "ratio": "cpp",
         "*.tcc": "cpp",
-        "string": "cpp",
-        "vector": "cpp",
-        "istream": "cpp",
-        "limits": "cpp",
-        "ostream": "cpp",
-        "sstream": "cpp",
-        "streambuf": "cpp"
+        "string": "cpp"
     }
 }

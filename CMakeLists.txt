@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(PROJECT_DIR "C:/labs/Semestr 5/algorithms_and_structures")
 
-file(GLOB_RECURSE SOURCES ${PROJECT_DIR}/src/*.cpp ${PROJECT_DIR}/src/*.h ${PROJECT_DIR}/main.cpp)
+file(GLOB_RECURSE SOURCES ${PROJECT_DIR}/main.cpp ${PROJECT_DIR}/src/*.cpp ${PROJECT_DIR}/src/*.h)
 
 add_executable(algorithms_and_structures ${SOURCES})
 
