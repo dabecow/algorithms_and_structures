@@ -5,6 +5,6 @@
 
 using namespace std;
 
-void create_file(string name, int min, int max);
+void create_file(string name, int min, int max, int number);
 
 #endif
