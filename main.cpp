@@ -6,21 +6,12 @@
 #include "structures/table/closedHashing/QuadraticProbingDivisionHashTable.h"
 #include "structures/table/closedHashing/QuadraticProbingMultiplyingHashTable.h"
 
-#define STRINGS 10000
-#define BUCKETS 100
+#define STRINGS 1000
+#define BUCKETS 1000
 #define CHARS_IN_STRING 6
 #define MAX_I_VALUE 10
 #define C_VALUE 4
 #define D_VALUE 4
-
-std::string intArrToStr(int* arr, int sizeOfArr){
-    std::string str;
-    for (int i = 0; i < sizeOfArr; ++i) {
-        str+= std::to_string(i) + ':'  + std::to_string(arr[i]) + '\n';
-    }
-
-    return str;
-}
 
 std::string random_string(int length)
 {

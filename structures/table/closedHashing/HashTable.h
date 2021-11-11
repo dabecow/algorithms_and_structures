@@ -42,7 +42,7 @@ protected:
     /**
      *
      * @param value
-     * @return how many steps needed to add or -1 if couldn't add the value
+     * @return how many steps needed
      */
     virtual int addValue(std::string value) = 0;
 
@@ -64,18 +64,16 @@ public:
     }
 
     int add(std::string value) {
-        int result = addValue(std::move(value));
+        int stepsCount = addValue(std::move(value));
 
-        if (result == 10) {
-            tries++;
-            stepsSum+=10;
+        tries++;
+        stepsSum+=stepsCount;
+
+        if (stepsCount == 10) {
             return -1;
         }
 
         size++;
-
-        tries++;
-        stepsSum+=result;
 
         return 0;
     }

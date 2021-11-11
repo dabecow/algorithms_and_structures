@@ -23,7 +23,7 @@ public:
 
         int i;
         for (i = 0; i < iMaxValue; ++i) {
-            if (insert(hashResult + constValue * i, &value) % numberOfBuckets == 0)
+            if (insert((hashResult + constValue * i) % numberOfBuckets, &value)  == 0)
                 break;
         }
 
