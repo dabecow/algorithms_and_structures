@@ -17,17 +17,19 @@ public:
     QuadraticProbingMultiplyingHashTable(int numberOfBuckets, int iMaxValue, int stringLength, int cValue, int dValue)
             : HashTable(numberOfBuckets, iMaxValue, stringLength), cValue(cValue), dValue(dValue) {}
 
-    int add(std::string value) override {
+    int addValue(std::string value) override {
         double A = (sqrt(5) - 1)/2;
 
         int hashResult = multiplyingHashFunction(stringToIntSumByXor(value, r), numberOfBuckets, A);
 
-        for (int i = 0; i < iMaxValue; ++i) {
+        int i;
+
+        for (i = 0; i < iMaxValue; ++i) {
             if (insert(hashResult + cValue * i + dValue * i * i, &value) % numberOfBuckets == 0)
-                return 0;
+                break;
         }
 
-        return -1;
+        return i;
     }
 };
 

@@ -7,6 +7,7 @@
 #define ALGORITHMS_AND_STRUCTURES_HASHTABLE_H
 
 #include <string>
+#include <utility>
 
 //the previous class HashTable was made as an abstract but we didn't know about the fifth lab where the hashtable has
 //another structure and there are no much time for the lab sooo ladies and gentlemen
@@ -18,7 +19,17 @@ protected:
     int numberOfBuckets;
     std::string** array;
     int iMaxValue;
+    int stepsSum;
+    int tries;
+    int size;
 
+    /**
+     * The method which used by the other functions to try to add the value in the array
+     *
+     * @param idx – index in the array to insert the value
+     * @param value
+     * @return 0 if inserted, otherwise -1
+     */
     int insert(int idx, std::string* value){
         if (array[idx] == nullptr){
             array[idx] = value;
@@ -27,6 +38,13 @@ protected:
 
         return -1;
     }
+
+    /**
+     *
+     * @param value
+     * @return how many steps needed to add or -1 if couldn't add the value
+     */
+    virtual int addValue(std::string value) = 0;
 
 public:
 
@@ -41,9 +59,34 @@ public:
         for (int i = 0; i < numberOfBuckets; ++i) {
             array[i] = nullptr;
         }
+        stepsSum = 0;
+        tries = 0;
     }
 
-    virtual int add(std::string value) = 0;
+    int add(std::string value) {
+        int result = addValue(std::move(value));
+
+        if (result == 10) {
+            tries++;
+            stepsSum+=10;
+            return -1;
+        }
+
+        size++;
+
+        tries++;
+        stepsSum+=result;
+
+        return 0;
+    }
+
+    float getAverageStepsToAdd() const{
+        return (float) stepsSum / (float) tries;
+    }
+
+    int getSize() const {
+        return size;
+    }
 };
 
 

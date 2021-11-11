@@ -36,10 +36,10 @@ std::string random_string(int length)
 
 int main() {
 
-    HashTable *linearDivisionTable = new LinearProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, C_VALUE);
-    HashTable *linearMultiplyingTable = new LinearProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, C_VALUE);
-    HashTable *quadraticDivisionTable = new QuadraticProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, C_VALUE, D_VALUE);
-    HashTable *quadraticMultiplyingTable = new QuadraticProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, C_VALUE, D_VALUE);
+    HashTable *linearDivisionTable = new LinearProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, CHARS_IN_STRING, C_VALUE);
+    HashTable *linearMultiplyingTable = new LinearProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, CHARS_IN_STRING, C_VALUE);
+    HashTable *quadraticDivisionTable = new QuadraticProbingDivisionHashTable(BUCKETS, MAX_I_VALUE, CHARS_IN_STRING, C_VALUE, D_VALUE);
+    HashTable *quadraticMultiplyingTable = new QuadraticProbingMultiplyingHashTable(BUCKETS, MAX_I_VALUE, CHARS_IN_STRING, C_VALUE, D_VALUE);
 
     for (int i = 0; i < STRINGS; ++i) {
         std::string str = random_string(CHARS_IN_STRING);
@@ -49,11 +49,15 @@ int main() {
         quadraticMultiplyingTable->add(str);
     }
 
-    std::cout << "Collisions in tables by buckets:\n" <<
-              "Division table: \n" << intArrToStr(divisionTable->countCollisions(), BUCKETS) << '\n' <<
-              "Multiplying table: \n" << intArrToStr(multiplyingTable->countCollisions(), BUCKETS) << '\n' <<
-              "Xor division table: \n" << intArrToStr(xorDivisionTable->countCollisions(), BUCKETS) << '\n' <<
-              "Xor multiplying table: \n" << intArrToStr(xorMultiplying->countCollisions(), BUCKETS);
+    std::cout << "Average steps to add in tables:\n\n" <<
+              "Division table with linear probing: \n" << linearDivisionTable->getAverageStepsToAdd() <<
+              "; its size: " << linearDivisionTable->getSize() << '\n' <<
+              "Multiplying table with linear probing: \n" << linearMultiplyingTable->getAverageStepsToAdd() <<
+              "; its size: " << linearMultiplyingTable->getSize() << '\n' <<
+              "Division table with quadratic probing: \n" << quadraticDivisionTable->getAverageStepsToAdd() <<
+              "; its size: " << quadraticDivisionTable->getSize() << '\n' <<
+              "Multiplying table with quadratic probing: \n" << quadraticMultiplyingTable->getAverageStepsToAdd() <<
+              "; its size: " << quadraticMultiplyingTable->getSize();
 
     return 0;
 }
