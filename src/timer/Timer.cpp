@@ -1,15 +1,24 @@
 #include "Timer.h"
 
+thread timersThread;
+bool isWork = false;
+
+static void timer(void* work){
+    bool w = static_cast<bool>(work);
+
+    while(w){
+        startTime++;
+        _sleep(1);
+    }
+}
+
 void startTimer(){
-    timeval now;
-    mingw_gettimeofday(&now, NULL);
-    startTime = now.tv_usec;
+    isWork = true;
+    timersThread = thread(timer, &isWork);
     printf("Timer started\n");
 }
 
 void loopTimer(){
-    timeval now;
-    mingw_gettimeofday(&now, NULL);
-    long long unow = now.tv_usec;
-    printf("Timer loop: %d\n", unow - startTime);
+    isWork = false;
+    printf("Timer loop: %d\n", startTime);
 }

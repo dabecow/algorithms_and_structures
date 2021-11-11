@@ -8,7 +8,7 @@ int main() {
     // create_file("./input.txt", 1, 100, 1000);
 
     startTimer();
-    mp_sort("./input.txt", 8);
+    printf("paths %d\n",  mp_sort("./input.txt", 10));
     loopTimer();
 
     return 0;
